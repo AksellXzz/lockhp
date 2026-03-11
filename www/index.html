@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponsel Terblokir</title>
+    <style>
+        /* Reset default margin dan padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Mencegah scrolling */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            cursor: none; /* Menyembunyikan kursor untuk efek lebih imersif */
+        }
+
+        /* Animasi Strobe Intensitas Tinggi */
+        @keyframes strobeEffect {
+            0% {
+                background-color: #ff0000; /* Merah */
+            }
+            50% {
+                background-color: #000000; /* Hitam */
+            }
+            100% {
+                background-color: #ff0000; /* Merah */
+            }
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* Durasi 0.5ms (0.0005s) mungkin tidak terlihat sepenuhnya oleh monitor standar 60Hz-144Hz, 
+               jadi kita menggunakan durasi terkecil yang memungkinkan visual tetap "bergetar" */
+            animation: strobeEffect 0.0005s infinite linear;
+            padding: 20px;
+        }
+
+        .blocked-text {
+            color: #ffffff;
+            font-size: clamp(2rem, 10vw, 5rem); /* Responsif berdasarkan ukuran layar */
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            /* Text shadow untuk memastikan keterbacaan di atas latar belakang dinamis */
+            text-shadow: 
+                4px 4px 0px #000, 
+                -2px -2px 0px #000, 
+                2px -2px 0px #000, 
+                -2px 2px 0px #000,
+                0px 0px 20px rgba(0,0,0,0.8);
+            z-index: 10;
+            user-select: none;
+        }
+
+        /* Penutup layar penuh untuk simulasi HP */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="blocked-text">PONSEL ANDA<br>DI BLOKIR</h1>
+    </div>
+
+    <!-- Efek vignette agar terlihat seperti layar fisik -->
+    <div class="overlay"></div>
+
+</body>
+</html>
